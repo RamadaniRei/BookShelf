@@ -1,17 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import Book from "./Book";
+import "./BookList.css";
+import { BookContext } from "../context/BookContext";
 import { ThemeContext } from "../context/ThemeContext";
-import { BookContext } from "../context/ContentContext";
 
-export default class BookList extends Component {
+export default class BookList extends React.Component {
   render() {
     return (
       <ThemeContext.Consumer>
-        {(ThemeContext) => (
+        {(contextTheme) => (
           <BookContext.Consumer>
-            {(BookContext) => {
-              const { books } = BookContext();
-              const { changeTheme, isDarkMode, dark, light } = ThemeContext;
+            {(contextBook) => {
+              const { books } = contextBook;
+              const { changeTheme, isDarkMode, dark, light } = contextTheme;
               const theme = isDarkMode ? dark : light;
               return (
                 <section
@@ -22,15 +23,27 @@ export default class BookList extends Component {
                   <div className="container">
                     <div className="text-right">
                       <button className="btn btn-danger" onClick={changeTheme}>
-                        {" "}
                         Change Theme
                       </button>
                     </div>
                     <div className="text-center">
                       <h2 className="section-heading text-uppercase">
-                        BookShelf
+                        BookFolio
                       </h2>
-                      <h3 className="section-subheading text-muted"></h3>
+                      <h3 className="section-subheading text-muted">
+                        Lorem ipsum dolor sit amet consectetur.
+                      </h3>
+                    </div>
+                    <div className="row">
+                      {books.map((book, index) => {
+                        return (
+                          <Book
+                            book={book}
+                            key={index}
+                            index={index} // Pass the index as a prop
+                          />
+                        );
+                      })}
                     </div>
                   </div>
                 </section>
