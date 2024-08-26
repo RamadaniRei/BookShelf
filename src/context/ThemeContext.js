@@ -1,9 +1,8 @@
-import { hover } from "@testing-library/user-event/dist/hover";
-import React, { Component, createContext } from "react";
+import React from "react";
 
-export const ThemeContext = createContext();
+export const ThemeContext = React.createContext();
 
-class ThemeContextProvider extends Component {
+class ThemeContextProvider extends React.Component {
   state = {
     isDarkMode: true,
     dark: {

@@ -1,23 +1,6 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import BookList from "./components/BookList";
-import reportWebVitals from "./reportWebVitals";
-import ContentContextProvider from "./context/ContentContext";
-import ThemeContextProvider from "./context/ThemeContext";
+import ReactDOM from "react-dom/client"; // Updated import
+import App from "./components/App";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <ThemeContextProvider>
-      <ContentContextProvider>
-        <BookList />
-      </ContentContextProvider>
-    </ThemeContextProvider>
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(<App />);
