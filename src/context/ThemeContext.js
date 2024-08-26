@@ -1,0 +1,40 @@
+import { hover } from "@testing-library/user-event/dist/hover";
+import React, { Component, createContext } from "react";
+
+export const ThemeContext = createContext();
+
+class ThemeContextProvider extends Component {
+  state = {
+    isDarkMode: true,
+    dark: {
+      bg: "#222222",
+      color: "rgba(239,83,80,1)",
+      hover: "rgba(239,83,80,0.8)",
+    },
+    light: {
+      bg: "#ecf0f1",
+      color: "#222222",
+      hover: "rgba(255,193,,0.8)",
+    },
+  };
+
+  changeTheme = () => {
+    this.setState({
+      isDarkMode: !this.state.isDarkMode,
+    });
+  };
+
+  render() {
+    return (
+      <div>
+        <ThemeContext.Provider
+          value={{ ...this.state, changeTheme: this.changeTheme }}
+        >
+          {this.props.children}
+        </ThemeContext.Provider>
+      </div>
+    );
+  }
+}
+
+export default ThemeContextProvider;
